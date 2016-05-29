@@ -1,0 +1,51 @@
+body{
+  font: "나눔고딕";
+}
+
+.panel{
+    background-color: #7EA6E0;
+}
+
+.panel-body{
+  padding: 0px;
+}
+
+.btnGroup, .btn-seperated-group{
+  text-align: center;
+}
+
+.restaurant{
+  width:100%;
+  display: block;
+  margin-top: 15px;
+}
+
+.btn-seperated-group, .btn-group{
+  margin-top: 18px;
+}
+
+.btn-seperate{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.nameLabel{
+  height: 30px;
+  font-size: 15pt;
+}
+
+.menuList{
+  display: inline-block;
+  width: 65%;
+  margin-right: 8%
+}
+
+.menuCost{
+  display: inline-block;
+  width: 25%
+}
+
+.dormNameLabel{
+  margin: 20px 0px 10px;
+  font-size: 20pt;
+}
