@@ -10,7 +10,7 @@ function saving(){
 	var address = document.getElementById("address").value;
 	var remark = document.getElementById("remark").value;
 
-	alert(name+" "+id+" "+building+" "+roomType+" "+disability+" "+checks+" "+address+" "+remark);
+	//alert(name+" "+id+" "+building+" "+roomType+" "+disability+" "+checks+" "+address+" "+remark);
 	if(name=="" || id=="" || building=="" || checks=="" || roomType=="" || address=="")
 	{
 		alert(" 빈칸을 채워주시거나 박스를 선택하여 주십시요 ");
@@ -18,7 +18,7 @@ function saving(){
 	else
 	{		
 
-		$.post("Applying.php",{n:name, i:id, b:building, r:roomType, d:disability, a:address, re:remark},
+		$.post("../app.php",{n:name, i:id, b:building, r:roomType, d:disability, a:address, re:remark},
 		function(data){
 			console.log(data);
 			alert("Data is succesed!");
