@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="applying.css">
+<script type="text/javascript" src="Applying.js"></script>
+
+</head>
+	
+	<body>
+	<div id ="panel">	
+	<h1> 생활관입사신청 </h1>
+	<table>
+		<tr>
+			<th> 이름 </th>
+			<th colspan ="2"> 
+				<div class ="textbox">
+					<label for="texts"> </label>
+					<input type="text" id="name" name="name">
+				</div> 	  
+			</th>
+		</tr>
+		<tr>
+
+			<th> 학번 </th>
+			<th colspan ="2">
+				<div class ="textbox">
+					<label for="texts"> </label>
+					<input type="text" id="id" name="id">
+				</div> 
+			</th>
+		</tr>
+		<tr>
+  			<th > 신청캠퍼스 </th>
+  			<th colspan ="2">
+  				<select name ="campus"> 
+  				<option value = "Erica">Erica</option>
+  				</select>   			
+  			</th>
+		</tr>
+		<tr>
+			<th> 신청생활관 </th>
+			<th colspan ="2">
+				
+				<select name ="building" id="building" >
+				
+				<option value ="1 생활관"> 1 생활관 </option>
+				<option value ="2 생활관"> 2 생활관 </option>
+				<option value ="3 생활관"> 3 생활관 </option>
+				<option value ="4 생활관"> 4 생활관 </option>
+				</select>			
+				<select name ="roomType" id="roomType">
+				<option value="2"> 2인실</option>
+				<option value="1"> 1인실</option>
+				</select>
+				
+			</th>	
+		</tr>
+		<tr>
+			<th> 우선선발대상 </th>
+			<th colspan ="2">
+			 	<input type ="checkbox" id="disability" name ="disability" > 없음 <br>
+				<input type ="checkbox" id="disability" name ="disability" > 최우선선발장학생 <br>
+				<input type ="checkbox" id="disability" name ="disability" > 신체장애자 <br>
+				<input type ="checkbox" id="disability" name ="disability" > 국민기초생활보장수급자 <br>
+				<input type ="checkbox" id="disability" name ="disability" > 아동복지시설퇴소자			
+			</th>
+		</tr>
+		<tr>
+			<th> 입사기간 </th>
+				<th>	
+				<div class="check">
+					<input type="radio" id ="checks" name="checks">
+					<label for ="checks"> 방학 (2개월) </label>
+				</div>
+			</th>
+			<th> - 입사기간: 2016.06.28 ~ 2016.08.20 <br> - 납부금액: 550000원 </th>
+		</tr>
+		<tr>
+			<th> 보호자 등본주소 </th>
+			<th colspan ="2">
+				<div class ="textbox">
+					<label for="texts"> </label>
+					<input type="text" id="address" name="address">
+				</div> 			
+			</th>
+		</tr>
+		<tr>
+			<th> 비고 </th>
+			<th colspan ="2">
+				<div class ="textbox1">
+					<label for="texts"> </label>
+					<input type="text" id="remark" name ="remark">
+				</div>
+			</th>
+		</tr>
+		
+			
+		
+
+
+	</table>
+	<button onclick="saving()">제출</button>
+	<p>  
+   
+   <form method="link" action="main.html">   	
+   <button> 뒤로 </button>
+   </form>
+   </p>
+    </div>
+    
+	</body>
+
+</html>
+
