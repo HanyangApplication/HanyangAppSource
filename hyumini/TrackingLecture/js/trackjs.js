@@ -1,4 +1,5 @@
 /**
+<<<<<<< HEAD
  * Created by Lak on 2016. 6. 3..
  *	Author: Hyunglak Kim
  *
@@ -18,6 +19,9 @@
  *  parseXml(str): MxL형태의 데이터를 가져오는 함수
  *  downloadUrl(url, callback) :XML형태의 데이터를 가져오기 위한 함수
  *
+=======
+ * Created by Lak on 2016. 5. 30..
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
  */
 var geocoder;
 
@@ -28,10 +32,17 @@ var image = 'image/flag.png';
 var curr_x;//현재 위도와 경도를 넘겨주기 위한 변수
 var curr_y;
 var MarkerCount=5;
+<<<<<<< HEAD
 var good="";
 
 
 //초기 구글지도를 뛰우주기 위한 함수
+=======
+
+
+
+
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 function initialize() {
     geocoder = new google.maps.Geocoder();
 
@@ -45,22 +56,35 @@ function initialize() {
     }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
     detectBrowser(); //안드로이드와 아이폰에 맞도록 페이지 크기 변경
 
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);//맵을 그려줌
 
+<<<<<<< HEAD
     getSID();
     console.log(good);
     fn_drawObjects(); // 주요 빌딩목록을 표시한다.
     //Curr_Position(); // 현재 위치를 나타낸다
     PickMap(); //사용자 본인의 좌표를 찍어준다
     Search_Map(); //사용자가 건물 검색을 할 수 있도록 제공
+=======
+
+    fn_drawObjects(); // 주요 빌딩목록을 표시한다.
+    //Curr_Position(); // 현재 위치를 나타낸다
+
+    PickMap();
+    Search_Map();
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
     return false;
 
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
+<<<<<<< HEAD
 function getSID()
 {
     $.ajax({
@@ -87,6 +111,8 @@ function getSID()
 }
 
 //사용자가 맵위에 자신의 좌표를 찍을 수 있도록
+=======
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 function PickMap() {
     console.log(markers.length);
     var geocoder = new google.maps.Geocoder();
@@ -148,11 +174,17 @@ function Curr_Position() {
         var s = document.querySelector('#map_canvas');
         s.innerHTML = typeof msg == 'string' ? msg : "failed";
         s.className = 'fail';
+<<<<<<< HEAD
         alert("GPS정보를 가져올 수 없습니다.");
 
     }
 }
 //사용자가 현재 맵에서 건물을 검색할 수 있도록 하는 함수
+=======
+
+    }
+}
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 function Search_Map() {
 
     var input = /** @type {HTMLInputElement} */(document.getElementById('address'));
@@ -217,7 +249,11 @@ function Search_Map() {
 
 }
 
+<<<<<<< HEAD
 function fn_drawObjects() { //기본적인 제1공학관, 제2공학관 , 제 3공학관을 지도상에 나타내기 위해 위도와 경도를 불러오는 함수
+=======
+function fn_drawObjects() {
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 
     clearObjects();  // 마커, 인포윈도우 삭제
 
@@ -240,9 +276,13 @@ function fn_drawObjects() { //기본적인 제1공학관, 제2공학관 , 제 3�
         } // end for
     });
 }
+<<<<<<< HEAD
 
 var index =1;
 //마커정보를 가져와서 실제 구글지도에 뿌려주는 부분
+=======
+var index =1;
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 function fn_createMarker(address, store, note, lat, lon) {
     var latlng = new google.maps.LatLng(lat,lon);
     var marker = new google.maps.Marker({
@@ -260,7 +300,10 @@ function fn_createMarker(address, store, note, lat, lon) {
     google.maps.event.addListener(marker, 'click', function() {   infowindow.open(map,marker); });
 }
 
+<<<<<<< HEAD
 //MXL형태의 데이터를 가져오기 위한 함수
+=======
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 function downloadUrl(url, callback) { // 동기식
     var request = window.ActiveXObject ?
         new ActiveXObject('Microsoft.XMLHTTP') :
@@ -269,8 +312,11 @@ function downloadUrl(url, callback) { // 동기식
     request.send(null);
     callback(request.responseText, request.status);
 }
+<<<<<<< HEAD
 
 //MXL형태의 데이터를 가져오기 위한 함수
+=======
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 function parseXml(str) {
     if (window.ActiveXObject) {
         var doc = new ActiveXObject('Microsoft.XMLDOM');
@@ -281,7 +327,11 @@ function parseXml(str) {
     }
 }
 
+<<<<<<< HEAD
 function clearObjects() { //지도상의 자표를 없에기 위해서
+=======
+function clearObjects() {
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
     }
@@ -292,7 +342,11 @@ function clearObjects() { //지도상의 자표를 없에기 위해서
     }
     infowindows.length = 0;
 }
+<<<<<<< HEAD
 function detectBrowser() { //현재 브라우져에 맞게 맵 크기를 조절하기 위해서
+=======
+function detectBrowser() {
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
     var useragent = navigator.userAgent;
     var mapdiv = document.getElementById("map_canvas");
 
@@ -310,15 +364,23 @@ function detectBrowser() { //현재 브라우져에 맞게 맵 크기를 조절�
 
     }
 }
+<<<<<<< HEAD
 function trackingLecture(curr_x,curr_y) //자신의 좌표를 다른 파일에 보내기 위한 함수
+=======
+function trackingLecture(curr_x,curr_y)
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 {//트렉킹을 위한 위치 이동
     if(isNaN(curr_x))
     {
         alert("현재 위치를 설정하지 않았습니다")
     }
     else{
+<<<<<<< HEAD
         
         window.location.href = "gotofile.html?index=" + curr_x+"?index="+curr_y+"?index="+good;
+=======
+        window.location.href = "gotofile.html?index=" + curr_x+"?index="+curr_y;
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
     }
 }
 

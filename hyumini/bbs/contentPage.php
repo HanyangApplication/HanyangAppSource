@@ -102,10 +102,19 @@ if(!isset($_SESSION["studentInfo"])) {
 				<br/><br/><br/>
 		</div>
 		<div class="pageSwitch">
+<<<<<<< HEAD
 	      <div ><a  href="http://selab.hanyang.ac.kr/hyumini/main/main.html">Home</a></div>
 	      <div><a href="../bus/shuttle.html">Shuttle</a></div>
 	      <div><a href="../WeeklyMenu/weeklymenu.php">Meal</a></div>
 	      <div><a class="active" href="../bbs/contentList.php">BBS</a></div>
 	 	</div>
+=======
+		    <div ><a  href="./">ID card</a></div>
+		    <div><a href="../lecture">Schedule</a></div>
+		    <div><a href="../bus/shuttle.html">Shuttle</a></div>
+		    <div><a href="../WeeklyMenu/index.php">Meal</a></div>
+		    <div><a class="active" href="../bbs/">BBS</a></div>
+		</div>
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 	</body>
 </html>
