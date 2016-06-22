@@ -318,7 +318,7 @@ function trackingLecture(curr_x,curr_y) //자신의 좌표를 다른 파일에 �
     }
     else{
         
-        window.location.href = "./gotofile.html?index=" + curr_x+"?index="+curr_y+"?index="+good;
+        window.location.href = "gotofile.html?index=" + curr_x+"?index="+curr_y+"?index="+good;
     }
 }
 
