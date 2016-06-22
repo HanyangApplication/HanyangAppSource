@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+ 
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<script language="javascript" type="text/javascript" src="RoomSelection.js"></script>
+ <script> 
+    
+    </script>
+ </head>
+	
+	<body>
+	<div id ="panel">		
+
+	<h1> 호실배정신청 </h1>
+	<p>
+		Name:<input id="name"/>
+		&nbsp;&nbsp;
+		ID:<input id="id"/>
+	</p>
+	<select name ="building" id="building">
+				<option> 선택 </option>
+				<option value ="1 생활관"> 1 생활관 </option>
+				<option value ="2 생활관"> 2 생활관 </option>
+				<option value ="3 생활관"> 3 생활관 </option>
+				<option value ="4 생활관"> 4 생활관 </option>
+	</select>			
+	<select name ="roomType" id="roomType">
+				<option> 선택 </option>
+				<option value="2"> 2인실</option>
+				<option value="1"> 1인실</option>
+	</select>
+	
+		<div class ="textbox1">
+					<label for="texts"> 호실 : </label>
+					<input type="text" id="room" name ="room">
+		</div>
+
+    <p>
+     - 주의 - 같은 호실 동일 지원자가 있을 경우 선순으로 지원자를 속출함
+     <br>
+     같은호실 탈락자는 랜덤 배정함
+    </p>
+    <input type ="button" value ="제출" onclick="inputdb()"/>
+   
+	</div>
+	</body>
+
+</html>
