@@ -31,7 +31,7 @@ header('Content-Type: application/javascript;charset=UTF-8');
 $user = 'hyumini';
 $pw = 'hyu(e)mini';
 $db = 'hyumini';
-$host = '166.104.242.130';
+$host ='localhost';
 $port = 3306;
 $table = 'LectureSchedule';
 
@@ -48,9 +48,8 @@ $callback = $_REQUEST['callback'];
 $return_array = array();
 $count = 0;
 
-$rs = mysqli_query($my_db, "select DISTINCT ConnectLecture.SID, ConnectLecture.lectureID, LectureSchedule.classroom 
-from ConnectLecture JOIN LectureSchedule 
-ON ConnectLecture.SID = $q AND ConnectLecture.lectureID = LectureSchedule.lectureID");
+$rs = mysqli_query($my_db, "select DISTINCT  * from ConnectLecture");
+
 
 while($data = mysqli_fetch_array($rs))
 {

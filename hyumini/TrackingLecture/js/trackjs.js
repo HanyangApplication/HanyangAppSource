@@ -28,6 +28,7 @@ var image = 'image/flag.png';
 var curr_x;//현재 위도와 경도를 넘겨주기 위한 변수
 var curr_y;
 var MarkerCount=5;
+var good="";
 
 
 //초기 구글지도를 뛰우주기 위한 함수
@@ -44,11 +45,13 @@ function initialize() {
     }
 
 
+
     detectBrowser(); //안드로이드와 아이폰에 맞도록 페이지 크기 변경
 
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);//맵을 그려줌
 
-
+    getSID();
+    console.log(good);
     fn_drawObjects(); // 주요 빌딩목록을 표시한다.
     //Curr_Position(); // 현재 위치를 나타낸다
     PickMap(); //사용자 본인의 좌표를 찍어준다
@@ -57,6 +60,31 @@ function initialize() {
 
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+
+function getSID()
+{
+    $.ajax({
+        url: "http://selab.hanyang.ac.kr/hyumini/session.php",
+        type: 'get',
+        async: false,
+        success: function (data) {
+            console.log('성공 - ', data);
+            if (data != null) {
+                var obj = JSON.stringify(data);
+                var st = JSON.parse(obj);
+                console.log(st.studentInfo.SID);
+                console.log(st.studentInfo);
+                $("#getName").css("border","1px solid blue").text(st.studentInfo.name+"님의 강의실 목록");
+                good = String(st.studentInfo.SID);
+            }
+        },
+        error: function (xhr) {
+            alert("로그인정보가 없습니다");
+            window.location.href = "http://selab.hanyang.ac.kr/hyumini/login/login.html";
+        }
+    });
+
+}
 
 //사용자가 맵위에 자신의 좌표를 찍을 수 있도록
 function PickMap() {
@@ -289,7 +317,8 @@ function trackingLecture(curr_x,curr_y) //자신의 좌표를 다른 파일에 �
         alert("현재 위치를 설정하지 않았습니다")
     }
     else{
-        window.location.href = "gotofile.html?index=" + curr_x+"?index="+curr_y;
+        
+        window.location.href = "./gotofile.html?index=" + curr_x+"?index="+curr_y+"?index="+good;
     }
 }
 

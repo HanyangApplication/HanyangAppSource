@@ -29,9 +29,7 @@
 
 var Point=[]; //0번쨰 위도, 1번째 경도
 //현 위치에서 1, 3, 4공학관의 문의 위치를 설정하는 배열
-var SID = 0; //student ID
-
-var str="";
+var sts="";
 //현재 사용자 위치의 자표를 가져와서 데이터로 변환하는 함수
 function getIndex(sParam){
     var sPageURL = window.location.search.substring(1);
@@ -48,20 +46,82 @@ function getIndex(sParam){
     if(typeof Point[0] == "undefined")
     {
         alert("좌표 정보가 없습니다");
-        window.location.href = "./../login/login.html";
+        window.location.href = "http://selab.hanyang.ac.kr/hyumini/login/login.html";
     }
 
 }
 getIndex("index");
-console.log(Point[0]+"   "+Point[1]);
-
+console.log(Point[0]+"   "+Point[1]+"  "+Point[2]);
 
 var lectrueInfo = []; //데이터 베이스에서 사용자의 정보를 가져오는 변수
 var Lecture =[]; // 강의실 번호를 가져오는 변수
 
-getSID();
+function track() {
+  // GetLectureData(String(Point[2]));
+    getdata(String(Point[2]));
+}
+function getdata()
+{
+    $.ajax({
+        url: "http://selab.hanyang.ac.kr/hyumini/test.php",
+        type: 'GET',
+        success: function (data) {
+            alert("good");
 
-// 동적으로 강의실 버튼을 생성해주는 function
+        },
+        error: function(xhr) {
+            console.log('실패 - ', xhr);
+            alert("ㅆㅃ");
+        }
+
+    });
+}
+
+var count =0;
+function GetLectureData(SID){
+    $.ajax({
+        url: "http://selab.hanyang.ac.kr/hyumini/TrackingLecture/test.php",
+        dataType: "json",
+        jsonpCallback: 'callback',
+        data: {"SID_key": SID},
+        type: 'GET',
+        success: function(data) {
+            console.log('DB정보 접근성공- ', data);
+            if(data != null)    {
+                for(var i=0; i<data.length;i++)
+                {
+                    var flags=true;
+                    lectrueInfo=data[i].classroom.split('-');
+                    Lecture[i] = lectrueInfo[1];//강의 정보에서 정확한 호수를 알기 위해서
+                    Lecture[i] = Lecture[i].slice(1,4)+"호";
+                    console.log(Lecture[i]+"  "+count);
+                    count++;
+                    if(typeof Lecture[i]== "undefined")
+                    {
+                        break;
+                    }
+                    for(var j=0;j<i; j++)
+                    {
+                        if(Lecture[i]==Lecture[j])
+                        {
+                            flags = false;
+                        }
+                    }
+                    if(flags == true)
+                    {
+                       Create(Lecture[i]);
+                    }
+
+                }
+            }
+        },
+        error: function(xhr) {
+            console.log('실패 - ', xhr);
+            alert("ㅆㅃ");
+        }
+    });
+}
+
 function Create(lectureinfo)
 {
     //DV.innerHTML= lectureinfo;
@@ -73,6 +133,7 @@ function Create(lectureinfo)
     btnObj.style.width = "120px";
     btnObj.style.background ="#35B62C";
     btnObj.onclick = resultLecture;
+    //document.body.appendChild(btnObj);
     DV1.appendChild(btnObj);
 }
 function resultLecture()
@@ -80,8 +141,6 @@ function resultLecture()
     var LectureName = this.value;
     var sd =LectureName.slice(0,3);// 강의실
     var sj =LectureName.slice(0,1);//층
-
-
     $("#get").css("border","1px solid blue").text(LectureName);
     $("#get1").css("border","1px solid blue").text(shortPath(sd, sj));
 
@@ -152,8 +211,6 @@ function shortPath(LectureName, floor){
 
     console.log(str);
     return str;
-
-
 }
 function SearchRoom(LectureName, arr)
 {
@@ -173,79 +230,15 @@ function  makeImage(NumImage) {
 
     if(document.getElementById('image').firstChild)
     {
-        document.getElementById('image').firstChild.src = 'image/' + NumImage.toString() + '.png';
+        document.getElementById('image').firstChild.src = 'http://selab.hanyang.ac.kr/hyumini/TrackingLecture/image/' + NumImage.toString() + '.png';
     }
     else {
         var img = document.createElement('img');
-        img.src = 'image/' + NumImage.toString() + '.png'; // 이미지 경로 설정 (랜덤)
+        img.src = 'http://selab.hanyang.ac.kr/hyumini/TrackingLecture/image/' + NumImage.toString() + '.png'; // 이미지 경로 설정 (랜덤)
         img.style.cursor = 'pointer'; // 커서 지정
         document.getElementById('image').appendChild(img); // board DIV 에 이미지 동적 추가
     }
 
 }
 
-function getSID()
-{
-        $.ajax({
-            url: "./../session.php",
-           // dataType: "json",
-            // jsonpCallback: 'callback',
-            type: 'get',
-            success: function (data) {
-                console.log('성공 - ', data);
-                if (data != null) {
-                    var obj = JSON.stringify(data);
-                    var st = JSON.parse(obj);
-                    console.log(st.studentInfo.SID);
-                    console.log(st.studentInfo);
-                    $("#getName").css("border","1px solid blue").text(st.studentInfo.name+"님의 강의실 목록");
-                    GetLectureData( String(st.studentInfo.SID));
-                }
-            },
-            error: function (xhr) {
-                alert("로그인정보가 없습니다");
-                window.location.href = "./../login/login.html";
-            }
-        });
 
-
-}
-//"http://selab.hanyang.ac.kr/hyumini/TrackingLecture/test.php"
-
-//
-function GetLectureData(SID){
-    $.ajax({
-        url: "http://selab.hanyang.ac.kr/hyumini/TrackingLecture/test.php",
-        dataType: "jsonp",
-        jsonpCallback: 'callback',
-        data: {"SID_key": SID},
-        Type: "GET",
-        success: function(data) {
-            console.log('DB정보 접근성공- ', data);
-            if(data != null)    {
-                for(var i=0; i<data.length;i++)
-                {
-                    var flags=true;
-                    lectrueInfo=data[i].classroom.split('-');
-                    Lecture[i] = lectrueInfo[1];//강의 정보에서 정확한 호수를 알기 위해서
-                    Lecture[i] = Lecture[i].slice(1,4)+"호";
-                    for(var j=0;j<i; j++)
-                    {
-                        if(Lecture[i]==Lecture[j])
-                        {
-                            flags = false;
-                        }
-                    }
-                    if(flags == true)
-                    {
-                        Create(Lecture[i]);
-                    }
-
-                }
-            }
-        },
-        error: function(xhr) {
-            console.log('실패 - ', xhr);
-        }
-    });
-}
