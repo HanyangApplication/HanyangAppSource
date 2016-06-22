@@ -1,9 +1,35 @@
 /**
  * Created by Lak on 2016. 6. 3..
+ *	Author: Hyunglak Kim
+ *
+ *	@Description
+ *	현재 사용자가 지정한 경도와 위도 좌표를 가져와 각 강의실과의
+ * 	가장 최단거리를 계산하는 코드와 함수로 이루어져 있다.
+ *
+ *  getIndex(sParam): sParm은 source.html에서 좌표 정보를 뜻한다
+ *  이 함수에서는 url '?' 뒷부분의 위도와 경도를 전역변수에 저장하는 역할을 한다.
+ *
+ *  Create(lectureinfo): DB의 정보를 받아서 각 강의실의 버튼을 생성한다.
+ *
+ *  resultLecture(): 최단거리를 텍스트로 표현하는 함수
+ *
+ *  shortPath(LectureName, floor): 각 층과 강의실 정보를 받아서 최단 거리를 계산하는 함수
+ *
+ *  SearchRoom(LectureName, arr): 배열에서 각 강의실에 맞는 정보를 불러오는 함수
+ *
+ *  makeImage(NumImage): 각 최단거리에 대한 이미지 생성 함수
+ *
+ *  getSID(): 새션값에서 로그인한 사용자의 학번을 가져오는 함수
+ *
+ *  GetLectureData(SID)GetLectureData(SID): 새션값에서 가져온 학번을 DB에서 조회해
+ *  로그인한 사용자의 강의실 정보를 가져오는 함수 
+ *
  */
+
 
 var Point=[]; //0번쨰 위도, 1번째 경도
 //현 위치에서 1, 3, 4공학관의 문의 위치를 설정하는 배열
+var SID = 0; //student ID
 
 var str="";
 //현재 사용자 위치의 자표를 가져와서 데이터로 변환하는 함수
@@ -19,6 +45,12 @@ function getIndex(sParam){
             Point[count++]=sParameterName[1];
         }
     }
+    if(typeof Point[0] == "undefined")
+    {
+        alert("좌표 정보가 없습니다");
+        window.location.href = "./../login/login.html";
+    }
+
 }
 getIndex("index");
 console.log(Point[0]+"   "+Point[1]);
@@ -26,47 +58,8 @@ console.log(Point[0]+"   "+Point[1]);
 
 var lectrueInfo = []; //데이터 베이스에서 사용자의 정보를 가져오는 변수
 var Lecture =[]; // 강의실 번호를 가져오는 변수
-//"http://selab.hanyang.ac.kr/hyumini/TrackingLecture/test.php"
 
-//
-function GetLectureData(){
-    $.ajax({
-        url: "http://selab.hanyang.ac.kr/hyumini/TrackingLecture/test.php",
-        dataType: "jsonp",
-        jsonpCallback: 'callback',
-        type: 'get',
-        success: function(data) {
-            console.log('성공 - ', data);
-            if(data != null)    {
-                for(var i=0; i<data.length;i++)
-                {
-                    var flags=true;
-                    lectrueInfo=data[i].classroom.split('-');
-                    Lecture[i] = lectrueInfo[1];//강의 정보에서 정확한 호수를 알기 위해서
-                    Lecture[i] = Lecture[i].slice(1,4)+"호";
-                    for(var j=0;j<i; j++)
-                    {
-                        if(Lecture[i]==Lecture[j])
-                        {
-                            flags = false;
-                        }
-                    }
-                    if(flags == true)
-                    {
-                        Create(Lecture[i]);
-                    }
-
-                }
-            }
-        },
-        error: function(xhr) {
-            console.log('실패 - ', xhr);
-        }
-    });
-}
-
-
-GetLectureData();
+getSID();
 
 // 동적으로 강의실 버튼을 생성해주는 function
 function Create(lectureinfo)
@@ -87,6 +80,7 @@ function resultLecture()
     var LectureName = this.value;
     var sd =LectureName.slice(0,3);// 강의실
     var sj =LectureName.slice(0,1);//층
+
 
     $("#get").css("border","1px solid blue").text(LectureName);
     $("#get1").css("border","1px solid blue").text(shortPath(sd, sj));
@@ -145,12 +139,12 @@ function shortPath(LectureName, floor){
         if(PositionEng[1] == PositionPS[i][0])
         {
             str = PositionPS[i][1];
-            if(PositionPS[i][1]==12||PositionPS[i][1]==31||PositionPS[i][1]==32)
+            if(PositionPS[i][1]==12||PositionPS[i][1]==31||PositionPS[i][1]==32||PositionPS[i][1]==33)
             {
-                str = "최단거리는"+str+"\n"+"계단으로 올라와 "+floor+"층에서 "+arr[1]+"으로 이동합니다.";
+                str = "최단거리는"+str+"\n"+"계단으로 올라와 "+floor+"층에서 "+arr[1]+"로 이동합니다.";
             }
             else{
-                str = "최단거리는"+str+"\n"+floor+"층에서 내려 "+arr[1]+"으로 이동합니다.";
+                str = "최단거리는"+str+"\n"+floor+"층에서 내려 "+arr[1]+"로 이동합니다.";
             }
             break;
         }
@@ -195,32 +189,39 @@ function getSID()
         $.ajax({
             url: "./../session.php",
            // dataType: "json",
-            //jsonpCallback: 'callback',
+            // jsonpCallback: 'callback',
             type: 'get',
             success: function (data) {
                 console.log('성공 - ', data);
                 if (data != null) {
                     var obj = JSON.stringify(data);
                     var st = JSON.parse(obj);
-                    SID = st.studentInfo.SID;
-                    console.log(SID);
+                    console.log(st.studentInfo.SID);
+                    console.log(st.studentInfo);
+                    $("#getName").css("border","1px solid blue").text(st.studentInfo.name+"님의 강의실 목록");
+                    GetLectureData( String(st.studentInfo.SID));
                 }
             },
             error: function (xhr) {
                 alert("로그인정보가 없습니다");
+                window.location.href = "./../login/login.html";
             }
         });
 
+
 }
-function newLectureData(){
+//"http://selab.hanyang.ac.kr/hyumini/TrackingLecture/test.php"
+
+//
+function GetLectureData(SID){
     $.ajax({
         url: "http://selab.hanyang.ac.kr/hyumini/TrackingLecture/test.php",
         dataType: "jsonp",
         jsonpCallback: 'callback',
-        type: 'get',
-        
+        data: {"SID_key": SID},
+        Type: "GET",
         success: function(data) {
-            console.log('성공 - ', data);
+            console.log('DB정보 접근성공- ', data);
             if(data != null)    {
                 for(var i=0; i<data.length;i++)
                 {
@@ -248,5 +249,3 @@ function newLectureData(){
         }
     });
 }
-
-
