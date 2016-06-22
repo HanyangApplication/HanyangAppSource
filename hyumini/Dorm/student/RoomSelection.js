@@ -1,5 +1,7 @@
-//authorship 김선웅
 
+
+
+// JavaScript Document
 function inputdb(){
 	
     	
