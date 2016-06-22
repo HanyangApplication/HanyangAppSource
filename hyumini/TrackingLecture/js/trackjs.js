@@ -1,23 +1,5 @@
 /**
- * Created by Lak on 2016. 6. 3..
- *	Author: Hyunglak Kim
- *
- *	@Description
- *	사용자가 직접 클릭을 해서 자신의 좌표를 지정하고, 각 건물의 위치검색과 지도검색이 가능하게 만들어 졌다 
- *
- *  @Function
- *
- *  initialize(): 구글지도를 가져오기위한 초기화
- *  detectBrowser(): 사용자의 폰크기에 맞도록 모바일 OS를 감지하여 화면 사이즈 조절
- *  PickMap(): 현재 위치를 지도상에서 클릭하여 나타낼 수 있도록한 함수
- *  Search_Map(): 지도 검색을 하 수 있도록 제공하는 함수
- *  fn_drawObjects(): XmL데이터를 가져와서 1, 2, 3 공학관을 표시할 좌표 생성
- *  fn_createMarker(address, store, note, lat, lon): 각 좌표에 맞도록 맵에 포인트 생성
- *  trackingLecture(): 최단거리를 알고자 할때 사용
- *  clearObjects(): 맵의 모든 정보를 없에는 역활
- *  parseXml(str): MxL형태의 데이터를 가져오는 함수
- *  downloadUrl(url, callback) :XML형태의 데이터를 가져오기 위한 함수
- *
+ * Created by Lak on 2016. 5. 30..
  */
 var geocoder;
 
@@ -30,7 +12,8 @@ var curr_y;
 var MarkerCount=5;
 
 
-//초기 구글지도를 뛰우주기 위한 함수
+
+
 function initialize() {
     geocoder = new google.maps.Geocoder();
 
@@ -51,14 +34,14 @@ function initialize() {
 
     fn_drawObjects(); // 주요 빌딩목록을 표시한다.
     //Curr_Position(); // 현재 위치를 나타낸다
-    PickMap(); //사용자 본인의 좌표를 찍어준다
-    Search_Map(); //사용자가 건물 검색을 할 수 있도록 제공
+
+    PickMap();
+    Search_Map();
     return false;
 
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
-//사용자가 맵위에 자신의 좌표를 찍을 수 있도록
 function PickMap() {
     console.log(markers.length);
     var geocoder = new google.maps.Geocoder();
@@ -120,11 +103,9 @@ function Curr_Position() {
         var s = document.querySelector('#map_canvas');
         s.innerHTML = typeof msg == 'string' ? msg : "failed";
         s.className = 'fail';
-        alert("GPS정보를 가져올 수 없습니다.");
 
     }
 }
-//사용자가 현재 맵에서 건물을 검색할 수 있도록 하는 함수
 function Search_Map() {
 
     var input = /** @type {HTMLInputElement} */(document.getElementById('address'));
@@ -189,7 +170,7 @@ function Search_Map() {
 
 }
 
-function fn_drawObjects() { //기본적인 제1공학관, 제2공학관 , 제 3공학관을 지도상에 나타내기 위해 위도와 경도를 불러오는 함수
+function fn_drawObjects() {
 
     clearObjects();  // 마커, 인포윈도우 삭제
 
@@ -212,9 +193,7 @@ function fn_drawObjects() { //기본적인 제1공학관, 제2공학관 , 제 3�
         } // end for
     });
 }
-
 var index =1;
-//마커정보를 가져와서 실제 구글지도에 뿌려주는 부분
 function fn_createMarker(address, store, note, lat, lon) {
     var latlng = new google.maps.LatLng(lat,lon);
     var marker = new google.maps.Marker({
@@ -232,7 +211,6 @@ function fn_createMarker(address, store, note, lat, lon) {
     google.maps.event.addListener(marker, 'click', function() {   infowindow.open(map,marker); });
 }
 
-//MXL형태의 데이터를 가져오기 위한 함수
 function downloadUrl(url, callback) { // 동기식
     var request = window.ActiveXObject ?
         new ActiveXObject('Microsoft.XMLHTTP') :
@@ -241,8 +219,6 @@ function downloadUrl(url, callback) { // 동기식
     request.send(null);
     callback(request.responseText, request.status);
 }
-
-//MXL형태의 데이터를 가져오기 위한 함수
 function parseXml(str) {
     if (window.ActiveXObject) {
         var doc = new ActiveXObject('Microsoft.XMLDOM');
@@ -253,7 +229,7 @@ function parseXml(str) {
     }
 }
 
-function clearObjects() { //지도상의 자표를 없에기 위해서
+function clearObjects() {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
     }
@@ -264,7 +240,7 @@ function clearObjects() { //지도상의 자표를 없에기 위해서
     }
     infowindows.length = 0;
 }
-function detectBrowser() { //현재 브라우져에 맞게 맵 크기를 조절하기 위해서
+function detectBrowser() {
     var useragent = navigator.userAgent;
     var mapdiv = document.getElementById("map_canvas");
 
@@ -282,7 +258,7 @@ function detectBrowser() { //현재 브라우져에 맞게 맵 크기를 조절�
 
     }
 }
-function trackingLecture(curr_x,curr_y) //자신의 좌표를 다른 파일에 보내기 위한 함수
+function trackingLecture(curr_x,curr_y)
 {//트렉킹을 위한 위치 이동
     if(isNaN(curr_x))
     {
