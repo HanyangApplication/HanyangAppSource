@@ -27,4 +27,7 @@
 		mysqli->close();
 
 	}
+
+	//authorship 김선웅
+
 ?>

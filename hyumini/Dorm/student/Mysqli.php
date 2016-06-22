@@ -12,3 +12,9 @@
 	};
 
 	mysqli_query($mysqli,"set names utf8");
+
+
+//authorship 김선웅
+
+
+	?>
