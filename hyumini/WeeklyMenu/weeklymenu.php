@@ -12,6 +12,26 @@
   <title></title>
   <meta charset="utf-8">
   <!-- Latest compiled and minified CSS -->
+<<<<<<< HEAD
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="weeklyCSS.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <script type="text/javascript" src="weeklymenuJS.js"></script>
+
+  <!-- CSS for page switch-->
+  <link href="../PageSwitch/pageSwitch.css" type="text/css" rel="stylesheet">
+=======
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="weeklyCSS.css">
@@ -27,6 +47,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <script type="text/javascript" src="weeklymenuJS.js"></script>
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 
 </head>
 <body class="panel panel-default">
@@ -65,6 +86,15 @@
 	include "./MenuMaker.php";
 	?>
 
+<<<<<<< HEAD
+  <div class="pageSwitch">
+      <div ><a  href="http://selab.hanyang.ac.kr/hyumini/main/main.html">Home</a></div>
+      <div><a href="../bus/shuttle.html">Shuttle</a></div>
+      <div><a class="active" href="../WeeklyMenu/weeklymenu.php">Meal</a></div>
+      <div><a href="../bbs/contentList.php">BBS</a></div>
+  </div>
+=======
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 <!-- </div> -->
 </body>
 </html>

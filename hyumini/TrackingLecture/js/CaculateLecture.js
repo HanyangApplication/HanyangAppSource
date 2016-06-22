@@ -1,11 +1,44 @@
 /**
  * Created by Lak on 2016. 6. 3..
+<<<<<<< HEAD
+ *	Author: Hyunglak Kim
+ *
+ *	@Description
+ *	현재 사용자가 지정한 경도와 위도 좌표를 가져와 각 강의실과의
+ * 	가장 최단거리를 계산하는 코드와 함수로 이루어져 있다.
+ *
+ *  getIndex(sParam): sParm은 source.html에서 좌표 정보를 뜻한다
+ *  이 함수에서는 url '?' 뒷부분의 위도와 경도를 전역변수에 저장하는 역할을 한다.
+ *
+ *  Create(lectureinfo): DB의 정보를 받아서 각 강의실의 버튼을 생성한다.
+ *
+ *  resultLecture(): 최단거리를 텍스트로 표현하는 함수
+ *
+ *  shortPath(LectureName, floor): 각 층과 강의실 정보를 받아서 최단 거리를 계산하는 함수
+ *
+ *  SearchRoom(LectureName, arr): 배열에서 각 강의실에 맞는 정보를 불러오는 함수
+ *
+ *  makeImage(NumImage): 각 최단거리에 대한 이미지 생성 함수
+ *
+ *  getSID(): 새션값에서 로그인한 사용자의 학번을 가져오는 함수
+ *
+ *  GetLectureData(SID)GetLectureData(SID): 새션값에서 가져온 학번을 DB에서 조회해
+ *  로그인한 사용자의 강의실 정보를 가져오는 함수 
+ *
+ */
+
+
+var Point=[]; //0번쨰 위도, 1번째 경도
+//현 위치에서 1, 3, 4공학관의 문의 위치를 설정하는 배열
+var sts="";
+=======
  */
 
 var Point=[]; //0번쨰 위도, 1번째 경도
 //현 위치에서 1, 3, 4공학관의 문의 위치를 설정하는 배열
 
 var str="";
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 //현재 사용자 위치의 자표를 가져와서 데이터로 변환하는 함수
 function getIndex(sParam){
     var sPageURL = window.location.search.substring(1);
@@ -19,6 +52,26 @@ function getIndex(sParam){
             Point[count++]=sParameterName[1];
         }
     }
+<<<<<<< HEAD
+    if(typeof Point[0] == "undefined")
+    {
+        alert("좌표 정보가 없습니다");
+        window.location.href = "http://selab.hanyang.ac.kr/hyumini/login/login.html";
+    }
+
+}
+getIndex("index");
+console.log(Point[0]+"   "+Point[1]+"  "+Point[2]);
+
+var lectrueInfo = []; //데이터 베이스에서 사용자의 정보를 가져오는 변수
+var Lecture =[]; // 강의실 번호를 가져오는 변수
+
+
+GetLectureData(String(Point[2]));
+
+var count =0;
+function GetLectureData(SID){
+=======
 }
 getIndex("index");
 console.log(Point[0]+"   "+Point[1]);
@@ -30,13 +83,21 @@ var Lecture =[]; // 강의실 번호를 가져오는 변수
 
 //
 function GetLectureData(){
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
     $.ajax({
         url: "http://selab.hanyang.ac.kr/hyumini/TrackingLecture/test.php",
         dataType: "jsonp",
         jsonpCallback: 'callback',
+<<<<<<< HEAD
+        data: {"SID_key": SID},
+        Type: 'GET',
+        success: function(data) {
+            console.log('DB정보 접근성공- ', data);
+=======
         type: 'get',
         success: function(data) {
             console.log('성공 - ', data);
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
             if(data != null)    {
                 for(var i=0; i<data.length;i++)
                 {
@@ -44,6 +105,15 @@ function GetLectureData(){
                     lectrueInfo=data[i].classroom.split('-');
                     Lecture[i] = lectrueInfo[1];//강의 정보에서 정확한 호수를 알기 위해서
                     Lecture[i] = Lecture[i].slice(1,4)+"호";
+<<<<<<< HEAD
+                    console.log(Lecture[i]+"  "+count);
+                    count++;
+                    if(typeof Lecture[i]== "undefined")
+                    {
+                        break;
+                    }
+=======
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
                     for(var j=0;j<i; j++)
                     {
                         if(Lecture[i]==Lecture[j])
@@ -53,7 +123,11 @@ function GetLectureData(){
                     }
                     if(flags == true)
                     {
+<<<<<<< HEAD
+                       Create(Lecture[i]);
+=======
                         Create(Lecture[i]);
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
                     }
 
                 }
@@ -65,10 +139,13 @@ function GetLectureData(){
     });
 }
 
+<<<<<<< HEAD
+=======
 
 GetLectureData();
 
 // 동적으로 강의실 버튼을 생성해주는 function
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 function Create(lectureinfo)
 {
     //DV.innerHTML= lectureinfo;
@@ -80,6 +157,10 @@ function Create(lectureinfo)
     btnObj.style.width = "120px";
     btnObj.style.background ="#35B62C";
     btnObj.onclick = resultLecture;
+<<<<<<< HEAD
+    //document.body.appendChild(btnObj);
+=======
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
     DV1.appendChild(btnObj);
 }
 function resultLecture()
@@ -87,7 +168,10 @@ function resultLecture()
     var LectureName = this.value;
     var sd =LectureName.slice(0,3);// 강의실
     var sj =LectureName.slice(0,1);//층
+<<<<<<< HEAD
+=======
 
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
     $("#get").css("border","1px solid blue").text(LectureName);
     $("#get1").css("border","1px solid blue").text(shortPath(sd, sj));
 
@@ -145,12 +229,21 @@ function shortPath(LectureName, floor){
         if(PositionEng[1] == PositionPS[i][0])
         {
             str = PositionPS[i][1];
+<<<<<<< HEAD
+            if(PositionPS[i][1]==12||PositionPS[i][1]==31||PositionPS[i][1]==32||PositionPS[i][1]==33)
+            {
+                str = "최단거리는"+str+"\n"+"계단으로 올라와 "+floor+"층에서 "+arr[1]+"로 이동합니다.";
+            }
+            else{
+                str = "최단거리는"+str+"\n"+floor+"층에서 내려 "+arr[1]+"로 이동합니다.";
+=======
             if(PositionPS[i][1]==12||PositionPS[i][1]==31||PositionPS[i][1]==32)
             {
                 str = "최단거리는"+str+"\n"+"계단으로 올라와 "+floor+"층에서 "+arr[1]+"으로 이동합니다.";
             }
             else{
                 str = "최단거리는"+str+"\n"+floor+"층에서 내려 "+arr[1]+"으로 이동합니다.";
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
             }
             break;
         }
@@ -158,8 +251,11 @@ function shortPath(LectureName, floor){
 
     console.log(str);
     return str;
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 }
 function SearchRoom(LectureName, arr)
 {
@@ -179,16 +275,81 @@ function  makeImage(NumImage) {
 
     if(document.getElementById('image').firstChild)
     {
+<<<<<<< HEAD
+        document.getElementById('image').firstChild.src = 'http://selab.hanyang.ac.kr/hyumini/TrackingLecture/image/' + NumImage.toString() + '.png';
+    }
+    else {
+        var img = document.createElement('img');
+        img.src = 'http://selab.hanyang.ac.kr/hyumini/TrackingLecture/image/' + NumImage.toString() + '.png'; // 이미지 경로 설정 (랜덤)
+=======
         document.getElementById('image').firstChild.src = 'image/' + NumImage.toString() + '.png';
     }
     else {
         var img = document.createElement('img');
         img.src = 'image/' + NumImage.toString() + '.png'; // 이미지 경로 설정 (랜덤)
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
         img.style.cursor = 'pointer'; // 커서 지정
         document.getElementById('image').appendChild(img); // board DIV 에 이미지 동적 추가
     }
 
 }
+<<<<<<< HEAD
+var PositionPS = [
+    [11,"제 1공학관 게스트하우스 방향 문으로 들어가 바로 앞 엘리베이터로 이동합니다."],
+    [12,"제 1공학관 구름 사다리 문으로 들어가 바로 앞 계단으로 이동합니다."],
+    [31,"제 3공학관 구름 사다리 문으로 들어가 바로 앞 계단으로 이동합니다."],
+    [32,"제 3공학관 도서관쪽 앞 문으로 들어가 바로 앞 계단으로 이동합니다."],
+    [41,"제 4공학관 도서관쪽 앞 문으로 들어가 바로 앞 엘리베이터로 이동합니다."]
+]
+var LectureRoomNo= [
+    [11,101,"101호 계단 강의실"],
+    [12,209,"209호 강의실"],
+    [12,208,"208호 강의실"],
+    [12,207,"207호 강의실"],
+    [12,206,"206호 계단 강의실"],
+    [12,205,"205호 강의실"],
+    [12,204,"204호 강의실"],
+    [12,203,"203호 강의실"],
+    [12,202,"202호 강의실"],
+    [12,201,"201호 강의실"],
+    [42,211,"211호 클레스터 PC1실"],
+    [42,212,"212호 클레스터 PC2실"],
+    [42,213,"213호 클레스터 PC3실"],
+    [32,210,"210호 강의실"],
+    [32,219,"219호 강의실"],
+    [33,318,"318호 실습실"],
+    [33,315,"315호 원격강의실"],
+    [13,309,"309호 강의실"],
+    [13,308,"308호 강의실"],
+    [13,307,"307호 제도 실습실"],
+    [13,306,"306호 CAD강의실"],
+    [13,305,"305호 강의실"],
+    [13,304,"304호 강의실"],
+    [13,303,"303호 강의실"],
+    [13,302,"302호 강의실"],
+    [13,301,"301호 강의실"],
+    [45,412,"412호 임베디드 실습실"],
+    [14,409,"409호 강의실"],
+    [14,408,"408호 강의실"],
+    [14,407,"407호 강의실"],
+    [14,406,"406호 강의실"],
+    [14,405,"405호 강의실"],
+    [14,404,"404호 강의실"],
+    [14,403,"403호 강의실"],
+    [14,402,"402호 강의실"],
+    [14,401,"401호 강의실"],
+    [35,512,"515호 강의실"],
+    [15,509,"509호 강의실"],
+    [15,508,"508호 강의실"],
+    [15,507,"507호 강의실"],
+    [15,506,"506호 강의실"],
+    [15,505,"505호 강의실"],
+    [15,504,"504호 강의실"],
+    [15,503,"503호 강의실"],
+    [15,502,"502호 강의실"],
+    [15,501,"501호 강의실"]
+]
+=======
 
 function getSID()
 {
@@ -248,5 +409,6 @@ function newLectureData(){
         }
     });
 }
+>>>>>>> 2873a68b686eb6814f890248c428eb3ba3bb38c1
 
 

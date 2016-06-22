@@ -1,0 +1,45 @@
+<!--
+  Author: Zhiqiang Wu
+  Date:June 20, 2016
+  Description: It's a layout of payment page.
+  And  dynamically generate form for payment information.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div id="panel">
+		<div><h3 id="title">Payment Information</h3></div>
+		<div id="error">
+			<p></p>
+		</div>
+      <div>
+        <table class="table table-striped table-condensed table-bordered" align="center">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">ID</th>
+              <th scope="col">Building</th>
+              <th scope="col">Room</th>
+              <th scope="col">Paymented</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <div class="page-control" data-page="">
+        </div>	
+      </div>
+      <br>
+      <a class="btn btn-success btn-sm btn-block" href="main.html" target="_self">Back</a>
+	</div>
+	</body>
+<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/payment.js"></script>
+</html>
