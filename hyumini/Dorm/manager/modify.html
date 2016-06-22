@@ -1,0 +1,85 @@
+<!--
+    Author: Zhiqiang Wu
+    Date:June 20, 2016
+    Description: It's modify layout.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div id="panel">
+		<div><h3 id="title">Modify Application</h3></div>
+		<div id="error">
+			<p></p>
+		</div>
+        <form id="searchInfomation" style="border:thick;bordercolor:black">
+            <input type="hidden" name="action" value="getinfo" />
+            <div class="form-group">
+                <label for="in_name">Name:</label>
+                <input id="in_name" name="in_name" type="text"/>
+            </div>
+            <div class="form-group">
+                <label for="in_id" >ID:</label>
+                <input id="in_id" name="in_id" type="text"/>
+            </div>
+            <button id="search" type="submit" style="width:60px">Search</button>
+        </form>
+        <form id="stdinfo" >
+            <input type="hidden" name="action" value="updateinfo" />
+            <div class="form-group">
+            	<label for="name">Name:</label>
+                <input id="name" name="name" type="text"/>
+            </div>
+            <div class="form-group">
+            	<label for="id">ID:</label>
+                <input id="id" name="id" type="text"/>
+            </div>
+            <div class="form-group">
+                <label for="dorm">Building:</label>
+                <select id="dorm" name="dorm">
+                	<option value="dorm1">Dormitory 1</option>
+                    <option value="dorm2">Dormitory 2</option>
+                    <option value="dorm3">Dormitory 3</option>
+                    <option value="dorm4">Dormitory 4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="room">Room:</label>
+            	<input id="room" name="room" type="text"/>
+            </div>
+            <div class="form-group">
+            	<button class="btn btn-success" type="submit">Submit</button>
+                <button class="btn btn-default" onclick="history.go(-1)" target="_self">Back</button>
+            </div>
+        </form>
+	</div>
+
+<!-- Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Select a person.</h4>
+      </div>
+      <div class="modal-body" id="infoModalBody">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/modify.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+body{
+	background-color: #7EA6E0;
+	text-align:center;
+}
+
+#panel{
+	background-color: #ffffff;
+	text-align: center;
+	width: 50%;
+	min-width: 800px;
+	border-radius: 10px;
+	padding: 20px 5%;
+	margin: 5% auto;
+}
+
+#panel {
+	border-radius: 5px;
+}
+
+#title{
+	margin-bottom: 15px;
+}
+
+table{
+	text-align:center
+}
+
+.page-control {
+	display: inline-table;
+	margin: 10px 0;
+}
+
+.page-control a {
+	padding: 0 80px;
+	cursor:pointer
+}
+.search-page-form label, .search-page-form button {
+	margin-left: 5px;
+}
+#stdinfo {
+	margin-top: 40px;
+}
+.btn-form-function>*{
+	margin: 5px 25px;
+}
