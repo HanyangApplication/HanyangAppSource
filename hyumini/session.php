@@ -25,6 +25,8 @@
 		echo json_encode(Array("studentInfo"=>null, "resultCode"=>-1));
 		session_destroy();
 		exit;
+	}else if(isset($_GET["mode"]) && $_GET["mode"]=="destroy"){
+		session_destroy();
 	}else{
 		http_response_code(200);
 		echo json_encode(Array("studentInfo"=>$_SESSION["studentInfo"], "resultCode"=>1));

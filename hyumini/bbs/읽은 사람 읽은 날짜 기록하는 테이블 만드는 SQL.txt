@@ -1,0 +1,5 @@
+Create		Table		PostReadLog		(
+	PostID		INT,
+	SID		INT,
+	Date		DATE
+);

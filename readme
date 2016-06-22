@@ -1,1 +1,16 @@
-Plz add readme at this text
+Author: 안윤근
+
+DB BackupFile: hyumini.sql
+
+db.php에서 보시면 
+user = "hyumini" 
+passwd = "hyu(e)mini" 
+dbname = "hyumini"
+로 되어있습니다.
+
+백업을 다시 import 시에도 이를 지켜주셔야 기능들이 정상적으로 작동할 것입니다.
+혹은 db.php에서 user, passwd, dbname을 적절히 수정하셔도 무방합니다.
+
+
+* insertscript.php는 DB 입력을 위해 임의로 만든 페이지입니다.
+앱 자체와는 무관합니다.

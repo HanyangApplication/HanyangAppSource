@@ -1,0 +1,51 @@
+<!--
+    Author: Zhiqiang Wu
+    Date:June 20, 2016
+    Description: This is period layout.
+    In this page, DatePicker used for selection calender.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+	<div id="panel">
+		<div><h3 id="title">Application Period</h3></div>
+		<div id="error">
+			<p></p>
+		</div>
+        <form class="form" style="width:50%; margin:0 auto">
+    		<div class="form-group">
+            	<label for="year" >Year:</label>
+                <input id="year" name="year" type="text"/>
+            </div>
+            <div class="form-group">
+                <label for="period" >Period:</label>
+            	<input id="period" name="period" type="text"/>
+            </div>
+            <div class="form-group">
+                <label for="begin" >Begin Date:</label>
+            	<input id="begin" name="begin"  class="Wdate" type='text' OnClick="WdatePicker({dateFmt:'yyyy-MM-DD'})" onFocus="WdatePicker({lang:'en'})"/>
+            </div>
+            <div class="form-group">
+                <label for="due" >Due to:</label>
+            	<input id="due" name="due" class="Wdate" type="text" OnClick="WdatePicker({dateFmt:'yyyy-MM-DD'})" onFocus="WdatePicker({lang:'en'})"/>
+            </div>
+            <div class="priod-btn form-group">
+            	<button class="btn btn-success btn-sm" type="submit" id="save">Save</button>
+            	<a class="btn btn-success btn-sm" href="main.html" target="_self">Back</a>
+            </div>
+    	</form>
+	</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/period.js"></script>
+</body>
+</html>

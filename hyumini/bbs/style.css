@@ -1,0 +1,110 @@
+/*
+저자
+
+5 ~ 84줄: 우승연
+91 ~ 110: 김진희
+
+
+*/
+body {
+	background-color: #7EA6E0 !important;
+}
+button {
+    outline: none;
+	border: none !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+#panel{
+	background-color: #ffffff;
+	text-align: center;
+	margin: auto;
+	width: 60%;
+	border-radius: 10px;
+	padding: 10px;
+	margin-top: 10%;
+}
+
+#panel *{
+	border-radius: 5px;
+}
+
+button{
+	background-color: #35B62C;
+	width: 80%;
+	margin-bottom: 5px;
+	height: 34px;
+}
+pre{
+	margin-bottom: 0px !important;
+	text-overflow: ellipsis;
+}
+
+#title{
+	margin-bottom: 15px;	
+}
+
+#write{
+	background-color: #4374D9;
+	float: left;
+	width: initial;
+	margin-right: 10%;
+}
+#searchSetting{
+	height: inherit;
+	width: 30%;
+	float: left;
+}
+#searchKeyword{
+	height: 34px !important;
+	float: left;
+	width: 30%;
+}
+#search{
+	height: 34px;
+}
+#topOption{
+	margin-top: 10px;
+}
+
+.cpbtn{
+	width: inherit;
+	float: right;
+}
+#contentWrap{
+	background-color: #ccc;
+	margin-bottom: 15px;
+	height: initial;
+	padding: 10px;
+}
+
+#onlyContent{
+	background-color: #8C8C8C;
+	padding: 5px;
+	border-radius: 5px;
+	margin-bottom: 5px;
+}
+
+
+.writer{
+	/*이건 아무리봐도 %주지 말고, px를
+	  주는 것이 옳다고 생각합니다!
+	  % 주면 그림 망가져요.
+	  최소 90px는 주어야 글자가 유지되요.
+	*/
+	width: 90px;
+	float:right;	
+}
+
+.number_of_reads{
+	width: 60px;
+	float:right;	
+}
+
+.number_of_reads_in_content{
+	width: 90px;
+	float:right;
+	text-overflow: none;
+}

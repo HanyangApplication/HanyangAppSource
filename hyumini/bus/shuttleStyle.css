@@ -1,5 +1,10 @@
+/*
+작성자 이학진
+shuttle tab과 commute tab 의 css
+*/
 .panel{
     background-color: #7EA6E0;
+    padding-bottom: 120px;
 }
 .panel-body{
   padding: 0px;
